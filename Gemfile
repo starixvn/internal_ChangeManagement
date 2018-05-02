@@ -80,7 +80,8 @@ end
 group :test do
   gem "shoulda", "~> 3.3.2"
   gem "mocha", "~> 0.13.3"
-  gem 'capybara', '~> 2.0.0'
+  # gem "nokogiri", "= 1.6.5"
+  gem 'capybara', '= 2.0.0'
 end
 
 local_gemfile = File.join(File.dirname(__FILE__), "Gemfile.local")
