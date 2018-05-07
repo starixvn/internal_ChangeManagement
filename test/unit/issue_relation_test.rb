@@ -1,5 +1,5 @@
 # Redmine - project management software
-# Copyright (C) 2006-2013  Jean-Philippe Lang
+# Copyright (C) 2006-2017  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -28,7 +28,8 @@ class IssueRelationTest < ActiveSupport::TestCase
            :issue_relations,
            :enabled_modules,
            :enumerations,
-           :trackers
+           :trackers,
+           :projects_trackers
 
   include Redmine::I18n
 
@@ -62,6 +63,20 @@ class IssueRelationTest < ActiveSupport::TestCase
     assert_equal IssueRelation::TYPE_PRECEDES, relation.relation_type
     assert_equal to, relation.issue_from
     assert_equal from, relation.issue_to
+  end
+
+  def test_cannot_create_inverse_relates_relations
+    from = Issue.find(1)
+    to = Issue.find(2)
+
+    relation1 = IssueRelation.new :issue_from => from, :issue_to => to,
+                                  :relation_type => IssueRelation::TYPE_RELATES
+    assert relation1.save
+
+    relation2 = IssueRelation.new :issue_from => to, :issue_to => from,
+                                  :relation_type => IssueRelation::TYPE_RELATES
+    assert !relation2.save
+    assert_not_equal [], relation2.errors[:base]
   end
 
   def test_follows_relation_should_not_be_reversed_if_validation_fails
@@ -114,7 +129,7 @@ class IssueRelationTest < ActiveSupport::TestCase
           :relation_type => IssueRelation::TYPE_PRECEDES
         )
     assert !r.save
-    assert_not_nil r.errors[:base]
+    assert_not_equal [], r.errors[:base]
   end
 
   def test_validates_circular_dependency_of_subtask
@@ -165,6 +180,71 @@ class IssueRelationTest < ActiveSupport::TestCase
           :relation_type => IssueRelation::TYPE_BLOCKED
         )
     assert !r.save
-    assert_not_nil r.errors[:base]
+    assert_not_equal [], r.errors[:base]
+  end
+
+  def test_create_with_initialized_journals_should_create_journals
+    from = Issue.find(1)
+    to   = Issue.find(2)
+    from_journals = from.journals.size
+    to_journals   = to.journals.size
+    relation = IssueRelation.new(:issue_from => from, :issue_to => to,
+                                 :relation_type => IssueRelation::TYPE_PRECEDES)
+    relation.init_journals User.find(1)
+    assert relation.save
+    from.reload
+    to.reload
+    relation.reload
+    assert_equal from.journals.size, (from_journals + 1)
+    assert_equal to.journals.size, (to_journals + 1)
+    assert_equal 'relation', from.journals.last.details.last.property
+    assert_equal 'precedes', from.journals.last.details.last.prop_key
+    assert_equal '2', from.journals.last.details.last.value
+    assert_nil   from.journals.last.details.last.old_value
+    assert_equal 'relation', to.journals.last.details.last.property
+    assert_equal 'follows', to.journals.last.details.last.prop_key
+    assert_equal '1', to.journals.last.details.last.value
+    assert_nil   to.journals.last.details.last.old_value
+  end
+
+  def test_destroy_with_initialized_journals_should_create_journals
+    relation = IssueRelation.find(1)
+    from = relation.issue_from
+    to   = relation.issue_to
+    from_journals = from.journals.size
+    to_journals   = to.journals.size
+    relation.init_journals User.find(1)
+    assert relation.destroy
+    from.reload
+    to.reload
+    assert_equal from.journals.size, (from_journals + 1)
+    assert_equal to.journals.size, (to_journals + 1)
+    assert_equal 'relation', from.journals.last.details.last.property
+    assert_equal 'blocks', from.journals.last.details.last.prop_key
+    assert_equal '9', from.journals.last.details.last.old_value
+    assert_nil   from.journals.last.details.last.value
+    assert_equal 'relation', to.journals.last.details.last.property
+    assert_equal 'blocked', to.journals.last.details.last.prop_key
+    assert_equal '10', to.journals.last.details.last.old_value
+    assert_nil   to.journals.last.details.last.value
+  end
+
+  def test_to_s_should_return_the_relation_string
+    set_language_if_valid 'en'
+    relation = IssueRelation.find(1)
+    assert_equal "Blocks #9", relation.to_s(relation.issue_from)
+    assert_equal "Blocked by #10", relation.to_s(relation.issue_to)
+  end
+
+  def test_to_s_without_argument_should_return_the_relation_string_for_issue_from
+    set_language_if_valid 'en'
+    relation = IssueRelation.find(1)
+    assert_equal "Blocks #9", relation.to_s
+  end
+
+  def test_to_s_should_accept_a_block_as_custom_issue_formatting
+    set_language_if_valid 'en'
+    relation = IssueRelation.find(1)
+    assert_equal "Blocks Bug #9", relation.to_s {|issue| "#{issue.tracker} ##{issue.id}"}
   end
 end
