@@ -101,9 +101,6 @@ class IssueQuery < Query
         :type => :list, :values => project_values
       ) unless project_values.empty?
     end
-    
-    # Qui@20131105 Add filter by parent issue id
-    add_available_filter "root_id", :type => :integer, :name => "#{l(:field_parent_issue)}", :values => ''
 
     add_available_filter "tracker_id",
       :type => :list, :values => trackers.collect{|s| [s.name, s.id.to_s] }

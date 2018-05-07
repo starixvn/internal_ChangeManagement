@@ -189,12 +189,8 @@ module ApplicationHelper
   end
 
   def format_activity_description(text)
-    
-    # Qui@20131014 Fix show html tag in activity preview
-    
-    CGI.unescapeHTML(strip_tags(truncate(text.to_s, :length => 120)).gsub(%r{[\r\n]*<(pre|code)>.*$}m, '...')
+    h(truncate(text.to_s, :length => 120).gsub(%r{[\r\n]*<(pre|code)>.*$}m, '...')
        ).gsub(/[\r\n]+/, "<br />").html_safe
-       
   end
 
   def format_version_name(version)
@@ -505,8 +501,7 @@ module ApplicationHelper
 
     text = text.dup
     macros = catch_macros(text)
-    
-    # text = Redmine::WikiFormatting.to_html(Setting.text_formatting, text, :object => obj, :attribute => attr)
+    text = Redmine::WikiFormatting.to_html(Setting.text_formatting, text, :object => obj, :attribute => attr)
 
     @parsed_headings = []
     @heading_anchors = {}
@@ -525,7 +520,6 @@ module ApplicationHelper
     end
 
     text.html_safe
-    
   end
 
   def parse_non_pre_blocks(text, obj, macros)

@@ -126,8 +126,8 @@ function contextMenuShow(event) {
       }
       if (render_x <= 0) render_x = 1;
       if (render_y <= 0) render_y = 1;
-      $('#context-menu').css('left', ((render_x - 15) + 'px'));
-      $('#context-menu').css('top', ((render_y - 165) + 'px'));
+      $('#context-menu').css('left', (render_x + 'px'));
+      $('#context-menu').css('top', (render_y + 'px'));
       $('#context-menu').show();
 
       //if (window.parseStylesheets) { window.parseStylesheets(); } // IE
