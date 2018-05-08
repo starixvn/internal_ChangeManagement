@@ -15,7 +15,7 @@ tt, code, pre { font-family: Consolas, "Liberation Mono", Courier, monospace; fo
 
 #content h1, h2, h3, h4 { color: #333; }
 
-#header { background-color: #fafafa; border-bottom: 1px solid #eee; padding: 4px 8px 10px 6px; height: auto; }
+#header { background: linear-gradient(135deg, rgba(255,255,255,1) 29%,rgba(171,211,238,1) 55%,rgba(161,205,234,1) 55%,rgba(249,249,249,1) 93%); border-bottom: 1px solid #eee; padding: 4px 8px 10px 6px; height: auto; }
 #header a { color: #4183C4; }
 #header > h1 { background: url(../images/logo.png) no-repeat 10px 5px; padding: 5px 45px; color: #393939; height: 30px;}
 

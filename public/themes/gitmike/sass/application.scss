@@ -2,7 +2,7 @@
 
 @import 'themeheader';
 @import 'variables';
-@import 'compass/css3';
+// @import 'compass/css3';
 @import 'mixins';
 
 //@import 'ja';
@@ -30,6 +30,7 @@ tt, code, pre {
   @include github-pagehead();
   padding: 4px 8px 10px 6px;
   height: auto;
+  background: linear-gradient(135deg, rgba(255,255,255,1) 29%,rgba(171,211,238,1) 55%,rgba(161,205,234,1) 55%,rgba(249,249,249,1) 93%);
   a {
     color: $link-color;
   }
