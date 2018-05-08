@@ -1,5 +1,6 @@
 var gulp = require('gulp');
 var sass = require('gulp-sass');
+var sourcemaps = require('gulp-sourcemaps');
 
 // compile task
 gulp.task('sass', function () {
@@ -8,9 +9,13 @@ gulp.task('sass', function () {
     //     .pipe(gulp.dest(function (f) {
     //         return f.base;
     //     }));
-    gulp.src('public/themes/gitmike/sass/application.scss')
-        .pipe(sass({outputStyle: 'compressed'}).on('error', swallowError))
-        .pipe(gulp.dest('public/themes/gitmike/stylesheets'))
+    return gulp.src('public/themes/gitmike/sass/application.scss')
+        .pipe(sourcemaps.init())
+        .pipe(sass({
+            outputStyle: 'compressed'
+        }).on('error', swallowError))
+        .pipe(sourcemaps.write('../stylesheets'))
+        .pipe(gulp.dest('public/themes/gitmike/stylesheets'));
 });
 
 //watch for changes

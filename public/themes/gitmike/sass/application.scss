@@ -1,44 +1,72 @@
-@import url(../../../stylesheets/application.css);
-
+@import url('../../../stylesheets/application.css');
 @import 'themeheader';
 @import 'variables';
-// @import 'compass/css3';
 @import 'mixins';
-
-//@import 'ja';
-
+$stop1: rgba(255,
+255,
+255,
+1);
+$stop2: rgba(171,
+211,
+238,
+1);
+$stop3: rgba(161,
+205,
+234,
+1);
+$stop4: rgba(249,
+249,
+249,
+1);
 body {
   background-color: $background-color;
   color: $text-color;
 }
 
-body, input, select, textarea, button {
+body,
+input,
+select,
+textarea,
+button {
   font: $base-font;
   line-height: 1.4;
 }
 
-tt, code, pre {
-  font-family: Consolas, "Liberation Mono", Courier, monospace;
+tt,
+code,
+pre {
+  font-family: Consolas, 'Liberation Mono', Courier, monospace;
   font-size: 12px;
 }
 
-#content h1, h2, h3, h4 {
-  color: $text-color;
+#content {
+  h1,
+  h2,
+  h3,
+  h4 {
+    color: $text-color;
+  }
 }
 
 #header {
-  @include github-pagehead();
-  padding: 4px 8px 10px 6px;
-  height: auto;
-  background: linear-gradient(135deg, rgba(255,255,255,1) 29%,rgba(171,211,238,1) 55%,rgba(161,205,234,1) 55%,rgba(249,249,249,1) 93%);
+  @include github-pagehead(); // background: linear-gradient(135deg, $stop1 29%, $stop2 55%, $stop3 55%, $stop4 93%);
+  height: auto; // padding: 4px 8px 10px 6px;
+  background-image: url('../images/logo.png'), linear-gradient(135deg, $stop1 29%, $stop2 55%, $stop3 55%, $stop4 93%);
+  background-repeat: no-repeat;
+  background-position: 10px 5px;
   a {
     color: $link-color;
   }
-  > h1 {
-    background: url(../images/logo.png) no-repeat 10px 5px;
-    padding: 5px 45px;
+  >h1 {
     color: #393939;
     height: 30px;
+    padding: 50px 5px 5px 5px;
+    .breadcrumbs,
+    .current-project{
+      display: inline;
+      font-size: 16px;
+      font-weight: bold;
+    }
   }
 }
 
@@ -47,7 +75,7 @@ only screen and (-o-min-device-pixel-ratio: 2/1),
 only screen and (-webkit-min-device-pixel-ratio: 2),
 only screen and (min-device-pixel-ratio: 2) {
   #header {
-    > h1 {
+    >h1 {
       background: url(../images/logo@2x.png) no-repeat 10px 5px;
       background-size: 30px 30px;
     }
@@ -60,21 +88,22 @@ only screen and (min-device-pixel-ratio: 2) {
 }
 
 #top-menu {
+  background: linear-gradient(#555, #444) !important;
   font: $base-font;
   padding: 10px 10px 2px 20px;
   @include github-header();
-
   #loggedas {
-    color: #222;
+    color: $stop1;
+    text-shadow: none;
   }
   a {
-    color: $text-color;
+    color: $stop1;
     font-weight: bold;
     padding: 5px;
     margin-right: 0;
     transition: color .15s ease-in;
-    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
-
+    text-shadow: none;
+    // text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
     &:hover {
       color: $link-color;
       text-decoration: none;
@@ -87,7 +116,7 @@ div {
     border: 1px solid;
     text-shadow: 0 1px white;
   }
-  &#content > div.flash {
+  &#content>div.flash {
     &:first-child {
       border-top-left-radius: 4px;
       border-top-right-radius: 4px;
@@ -143,14 +172,14 @@ div {
   padding: 0 10px 20px 15px !important;
   background: whiteSmoke;
   border: 1px solid #ddd;
-
   zoom: 1;
   border-radius: 4px;
   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.05);
 }
 
 div#content {
-  > h2, h2.contacts_header {
+  >h2,
+  h2.contacts_header {
     border-bottom: 1px solid #d8e6ec;
     background: #E6F1F6;
     text-shadow: 0 1px white;
@@ -160,7 +189,10 @@ div#content {
     margin: -6px -10px 10px;
   }
   > {
-    div.filters h2, #add-news > h2, #add-message > h2, #add-document > h2 {
+    div.filters h2,
+    #add-news>h2,
+    #add-message>h2,
+    #add-document>h2 {
       border-bottom: 1px solid #C5D5DD;
       background: #E6F1F6;
       text-shadow: 0 1px white;
@@ -174,7 +206,7 @@ div#content {
 
 .controller-boards.action-index #add-message {
   position: static;
-  #message-form > p {
+  #message-form>p {
     position: relative;
     padding: 10px;
     background-color: white;
@@ -184,7 +216,11 @@ div#content {
 }
 
 // .controller-documents.action-index div#content  h2,
-.controller-timelog.action-index div#content h2, .controller-time_entry_reports.action-report div#content h2, .controller-boards.action-show div#content h2, .controller-messages.action-show div#content h2, .controller-boards.action-show div#content div#add-message h2 {
+.controller-timelog.action-index div#content h2,
+.controller-time_entry_reports.action-report div#content h2,
+.controller-boards.action-show div#content h2,
+.controller-messages.action-show div#content h2,
+.controller-boards.action-show div#content div#add-message h2 {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
   border-top: 1px solid #AECCD7;
@@ -192,11 +228,14 @@ div#content {
   margin: -2px -10px 10px;
 }
 
-.controller-timelog.action-index div#content .contextual, .controller-time_entry_reports.action-report div#content .contextual {
+.controller-timelog.action-index div#content .contextual,
+.controller-time_entry_reports.action-report div#content .contextual {
   margin-top: 50px;
 }
 
-#add-news, #add-message, #add-document {
+#add-news,
+#add-message,
+#add-document {
   margin-bottom: 20px;
 }
 
@@ -209,7 +248,7 @@ p.breadcrumb {
   margin: 4px 0 14px 0;
 }
 
-div#content > div.contextual {
+div#content>div.contextual {
   margin-top: 10px;
   margin-right: 10px;
 }
@@ -224,10 +263,12 @@ p.subtitle {
 
 .contextual a {
   color: #888;
-  &:link, &:visited {
+  &:link,
+  &:visited {
     color: #888;
   }
-  &:hover, &:visited:hover {
+  &:hover,
+  &:visited:hover {
     color: #333;
   }
 }
@@ -240,16 +281,22 @@ div.filters h2 .scope_title a {
 #header {
   padding-top: 10px;
   padding-left: 10px;
+  padding-bottom: 0 !important;
+  padding-right: 0 !important;
   background-position-y: 11%;
 }
 
 div#welcome-store-content {
-  h1, h2, h3, h4 {
+  h1,
+  h2,
+  h3,
+  h4 {
     color: #222;
   }
 }
 
-#content, #main.nosidebar #content {
+#content,
+#main.nosidebar #content {
   background: #fff;
   border: 1px solid #ddd;
   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.05);
@@ -258,7 +305,6 @@ div#welcome-store-content {
 
 a {
   color: $link-color;
-
   &:link,
   &:visited {
     color: $link-color;
@@ -277,7 +323,8 @@ div {
       margin: 0 0 6px 0;
     }
   }
-  &.contact.details, &.deal.details {
+  &.contact.details,
+  &.deal.details {
     padding: 15px !important;
     margin: -11px -11px 6px;
   }
@@ -294,7 +341,6 @@ div {
   color: #636363;
   margin-top: 45px;
   padding: 15px;
-
   .bgl {
     .bgr {
       &:after {
@@ -305,20 +351,23 @@ div {
 }
 
 // Headers
-
-h2, h3, h4 {
+h2,
+h3,
+h4 {
   border-bottom: 0;
 }
 
 .wiki {
-  h1, h2, h3 {
+  h1,
+  h2,
+  h3 {
     border-bottom: 0;
   }
   &.wiki-page {
     h1 {
       border-bottom: 1px solid #ccc;
     }
-    > h2 {
+    >h2 {
       border-bottom: 1px solid #ccc;
       padding-bottom: 6px;
     }
@@ -328,10 +377,7 @@ h2, h3, h4 {
 @import 'mainmenu';
 @import 'tables';
 @import 'forms';
-
-
 // Misc
-
 .box {
   background-color: #fcfcfc;
   border-radius: 8px;
@@ -344,7 +390,6 @@ img.gravatar {
 
 @import 'wiki';
 @import 'projects';
-
 div.journal .details {
   padding-left: 30px;
 }
@@ -395,7 +440,10 @@ div.modal {
   border-radius: 8px;
   border: 1px solid #CCC;
   padding: 30px 42px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 16px rgba(0,
+  0,
+  0,
+  0.2);
 }
 
 #modalbg {
@@ -404,9 +452,7 @@ div.modal {
 }
 
 @import 'login';
-
 // Contacts
-
 div.filters .live_search {
   margin-left: 11px !important;
 }
@@ -462,7 +508,8 @@ label#search_overlabel {
 }
 
 span {
-  &.tag a, &.deal-status {
+  &.tag a,
+  &.deal-status {
     color: white;
     text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25);
     font-size: 9px !important;
@@ -490,18 +537,26 @@ span {
 }
 
 body {
-  &.controller-contacts #content, &.controller-notes #content, &.controller-contacts_tasks #content, &.controller-contacts_duplicates #content, &.controller-sale_funel #content, &.controller-deals #content {
+  &.controller-contacts #content,
+  &.controller-notes #content,
+  &.controller-contacts_tasks #content,
+  &.controller-contacts_duplicates #content,
+  &.controller-sale_funel #content,
+  &.controller-deals #content {
     margin-right: 340px;
   }
-  &.controller-contacts #sidebar, &.controller-notes #sidebar, &.controller-contacts_tasks #sidebar, &.controller-contacts_duplicates #sidebar, &.controller-sale_funel #sidebar, &.controller-deals #sidebar {
+  &.controller-contacts #sidebar,
+  &.controller-notes #sidebar,
+  &.controller-contacts_tasks #sidebar,
+  &.controller-contacts_duplicates #sidebar,
+  &.controller-sale_funel #sidebar,
+  &.controller-deals #sidebar {
     width: 300px !important;
   }
 }
-
 
 @import 'invoice';
 @import 'settings';
 @import 'plugins';
 @import 'store';
 @import 'responsive';
-
