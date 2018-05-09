@@ -111,7 +111,7 @@ module FavoriteProjectsHelper
     when :parent
       value ? (value.visible? ? link_to_issue(value, :subject => false) : "##{value.id}") : ''
     when :description
-      issue.description? ? content_tag('small', textilizable(issue, :description), :class => "wiki") : ''
+      issue.description? ? content_tag('small', issue.description.html_safe, :class => "wiki") : ''
     when :done_ratio
       progress_bar(value)
     when :relations
