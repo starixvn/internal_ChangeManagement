@@ -51,18 +51,20 @@ pre {
 #header {
   @include github-pagehead(); // background: linear-gradient(135deg, $stop1 29%, $stop2 55%, $stop3 55%, $stop4 93%);
   height: auto; // padding: 4px 8px 10px 6px;
-  background-image: url('../images/logo.png'), linear-gradient(135deg, $stop1 29%, $stop2 55%, $stop3 55%, $stop4 93%);
-  background-repeat: no-repeat;
-  background-position: 10px 5px;
+  background: linear-gradient(135deg, $stop1 29%, $stop2 55%, $stop3 55%, $stop4 93%);
+  padding-top: 0 !important;
   a {
     color: $link-color;
   }
   >h1 {
+    background-image: url('../images/logo.png');
+    background-repeat: no-repeat;
+    background-position: 10px 15px;
     color: #393939;
-    height: 30px;
+    height: auto;
     padding: 50px 5px 5px 5px;
     .breadcrumbs,
-    .current-project{
+    .current-project {
       display: inline;
       font-size: 16px;
       font-weight: bold;
@@ -102,8 +104,7 @@ only screen and (min-device-pixel-ratio: 2) {
     padding: 5px;
     margin-right: 0;
     transition: color .15s ease-in;
-    text-shadow: none;
-    // text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+    text-shadow: none; // text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
     &:hover {
       color: $link-color;
       text-decoration: none;
@@ -282,8 +283,7 @@ div.filters h2 .scope_title a {
   padding-top: 10px;
   padding-left: 10px;
   padding-bottom: 0 !important;
-  padding-right: 0 !important;
-  background-position-y: 11%;
+  padding-right: 0 !important; // background-position-y: 11%;
 }
 
 div#welcome-store-content {
