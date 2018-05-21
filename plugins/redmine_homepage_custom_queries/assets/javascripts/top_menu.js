@@ -56,14 +56,18 @@ $('#top-menu ul').dropit({
 
 // Append header toggle button
 var toggle_img = '<img id="toggle_img" src="/plugin_assets/redmine_homepage_custom_queries/images/navigation-up.png" style=" \
-    position: absolute; \
     z-index: 99999; \
-    right: 310px; \
     top: -3px; \
     width: 30px; \
-    cursor: pointer \
+	cursor: pointer; \
+	display: block; \
+	float: right; \
+	margin-top: -10px; \
 	">';
-$("#loggedas").html(toggle_img + $("#loggedas").html());
+
+// $("#loggedas").html(toggle_img + $("#loggedas").html());
+
+$("#top-menu").append(toggle_img);
 
 if ($.cookie && $.cookie("toggle_header") == "hide") {
 	$("#toggle_img").attr("src", "/plugin_assets/redmine_homepage_custom_queries/images/navigation-down.png");
