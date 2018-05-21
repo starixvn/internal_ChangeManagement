@@ -1,4 +1,8 @@
-#quick-search #q{
+#quick-search #q {
     border: none;
     height: 20px;
+}
+
+.dropit-submenu li {
+    float: none !important;
 }
