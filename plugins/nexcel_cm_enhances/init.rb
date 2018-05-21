@@ -1,4 +1,5 @@
 require 'layout_header_hook'
+require 'welcome_hook'
 
 Redmine::Plugin.register :nexcel_cm_enhances do
   name 'Nexcel Redmine Enhances plugin for Changes Management'

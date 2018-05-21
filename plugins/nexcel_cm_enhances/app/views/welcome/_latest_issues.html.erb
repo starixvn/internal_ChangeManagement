@@ -1,0 +1,13 @@
+<% @issues = Issue.order(updated_on: :desc).take(5) %>
+<% if @issues.any? %>
+    <div class="issues box">
+	<h3>Latest <%=l(:label_issue_plural)%></h3>
+		<ul>
+		<% for issue in @issues %>
+			<li>
+			    <%= link_to h(issue.subject), :controller => 'issues', :action => 'show', :id => issue.id %> (updated on <%= format_time(issue.updated_on) %>)
+			</li>
+		<% end %>
+		</ul>
+	</div>
+<% end %>
