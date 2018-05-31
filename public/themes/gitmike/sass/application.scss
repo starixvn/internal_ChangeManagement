@@ -48,6 +48,10 @@ pre {
   }
 }
 
+fieldset#filters td.values input {
+  height: auto;
+}
+
 #header {
   @include github-pagehead(); // background: linear-gradient(135deg, $stop1 29%, $stop2 55%, $stop3 55%, $stop4 93%);
   height: auto; // padding: 4px 8px 10px 6px;
