@@ -11,7 +11,7 @@ class NewsShowHooks < Redmine::Hook::ViewListener
     end
   end
 
-  def view_welcome_index_right(context = { })
+  def view_welcome_index_left(context = { })
     if HomeBlock.find_by_name('news')
       if context[:hook_caller].respond_to?(:render)
         context[:hook_caller].send(:render, {:locals => context, :partial => "welcome/news"})
