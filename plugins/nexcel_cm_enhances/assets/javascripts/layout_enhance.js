@@ -3,6 +3,7 @@ var cm = {
         cm.hideCustomQueriesDropitMenu();
         cm.initSelect2ForQuickSearch();
         cm.removeTabButtons();
+        cm.removeHelpMenu();
     },
 
     // On mouse leave for drop-it
@@ -19,9 +20,13 @@ var cm = {
 
     // Remove tab-button
     removeTabButtons: function () {
-        if($("#header h1").text() === ""){
+        if ($("#header h1").text() === "") {
             $("#main-menu").remove();
         }
+    },
+
+    removeHelpMenu: function(){
+        $("#top-menu a.help").parent().hide();
     }
 }
 
