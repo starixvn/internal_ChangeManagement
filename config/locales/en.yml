@@ -555,7 +555,7 @@ en:
   label_project_all: All Projects
   label_project_latest: Latest projects
   label_issue: Change Request
-  label_issue_new: New change request
+  label_issue_new: New Change Request
   label_issue_plural: Change Requests
   label_issue_view_all: View all change requests
   label_issues_by: "Change Requests by %{value}"
@@ -1012,7 +1012,7 @@ en:
   label_field_format_enumeration: Key/value list
   label_default_values_for_new_users: Default values for new users
   label_relations: Relations
-  label_new_project_issue_tab_enabled: Display the "New change request" tab
+  label_new_project_issue_tab_enabled: Display the "New Change Request" tab
   label_new_object_tab_enabled: Display the "+" drop-down
   label_table_of_contents: Table of contents
   label_font_default: Default font
