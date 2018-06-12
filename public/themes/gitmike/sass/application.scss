@@ -75,6 +75,11 @@ fieldset#filters td.values input {
       font-weight: bold;
     }
   }
+  form {
+    label {
+      color: $link-color;
+    }
+  }
 }
 
 @media only screen and (min--moz-device-pixel-ratio: 2),
