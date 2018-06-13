@@ -31,6 +31,9 @@ gem "rails-html-sanitizer", ">= 1.0.3"
 gem 'tzinfo-data', platforms: [:mingw, :x64_mingw, :mswin]
 gem "rbpdf", "~> 1.19.3"
 
+# fix bugs for rails-observer
+gem 'rails-observers', git: 'https://github.com/rails/rails-observers.git'
+
 # Optional gem for LDAP authentication
 group :ldap do
   gem "net-ldap", "~> 0.12.0"
