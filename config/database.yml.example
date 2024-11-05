@@ -4,18 +4,20 @@
 
 production:
   adapter: mysql2
-  database: redmine
-  host: localhost
+  database: redmine_cm
+  host: 10.18.200.133
+  port: 33066
   username: root
-  password: ""
+  password: 1qaz@WSX
   encoding: utf8
 
 development:
   adapter: mysql2
-  database: redmine_development
-  host: localhost
+  database: redmine_cm
+  host: 10.18.200.133
+  port: 33066
   username: root
-  password: ""
+  password: 1qaz@WSX
   encoding: utf8
 
 # Warning: The database defined as "test" will be erased and
