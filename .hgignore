@@ -37,6 +37,4 @@ vendor/cache
 .git/
 
 .bundle
-Gemfile.lock
-Gemfile.local
 
