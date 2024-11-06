@@ -7,5 +7,6 @@ RUN rm -r /usr/src/redmine/public/*
 COPY --chown=redmine:redmine ./plugins/ /usr/src/redmine/plugins/
 COPY --chown=redmine:redmine ./config/ /usr/src/redmine/config/
 COPY --chown=redmine:redmine ./public/ /usr/src/redmine/public/
+COPY --chown=redmine:redmine ./public/ /usr/src/redmine/log/
 
 COPY ./Gemfile /usr/src/redmine/Gemfile
