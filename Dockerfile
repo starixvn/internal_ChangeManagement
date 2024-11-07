@@ -2,6 +2,7 @@ FROM hub.nexdev.net/nexus/base_redmine345
 
 COPY --chown=redmine:redmine . /usr/src/redmine
 RUN chmod -R 777 /usr/src/redmine/log
+RUN bundle install
 # RUN rm -r /usr/src/redmine/plugins/* 
 # RUN rm -r /usr/src/redmine/config/* 
 # RUN rm -r /usr/src/redmine/public/*
