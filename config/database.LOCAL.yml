@@ -6,8 +6,8 @@
 production:
   adapter: mysql2
   database: redmine_pm
-  host: redmine_mysql_pm_mysql_db_LOCAL
-  port: 3306
+  host: 10.18.200.133
+  port: 33068
   username: root
   password: 1qaz@WSX
   encoding: utf8
@@ -15,8 +15,8 @@ production:
 development:
   adapter: mysql2
   database: redmine_pm
-  host: redmine_mysql_pm_mysql_db_LOCAL
-  port: 3306
+  host: 10.18.200.133
+  port: 33068
   username: root
   password: 1qaz@WSX
   encoding: utf8
